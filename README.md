@@ -38,43 +38,39 @@ npm run preview
 
 ## Публикация на GitHub Pages
 
-1. Создайте репозиторий на GitHub, например `gudajob-vacancy`.
-2. В файле `vite.config.js` замените `REPOSITORY_NAME` на название репозитория:
-
-```js
-base: process.env.GITHUB_PAGES ? '/gudajob-vacancy/' : '/',
-```
-
-3. Установите пакет для публикации:
-
-```bash
-npm install --save-dev gh-pages
-```
-
-4. Добавьте в `package.json` scripts:
-
-```json
-"predeploy": "GITHUB_PAGES=true npm run build",
-"deploy": "gh-pages -d dist"
-```
-
-5. Опубликуйте:
-
-```bash
-npm run deploy
-```
-
-6. В настройках репозитория откройте **Settings -> Pages** и выберите публикацию из ветки `gh-pages`.
-
-Ссылка будет выглядеть так:
+Проект настроен для адреса:
 
 ```text
-https://USERNAME.github.io/gudajob-vacancy/
+https://uyanujet72-art.github.io/GudaJoB/
 ```
 
-Где `USERNAME` - ваш GitHub-логин, а `gudajob-vacancy` - название репозитория.
+В `vite.config.js` уже указан правильный base:
 
-## Альтернативный способ через GitHub Actions
+```js
+base: '/GudaJoB/'
+```
 
-Можно не ставить `gh-pages`, а включить GitHub Pages через Actions и загружать папку `dist`.
-Для учебного проекта проще использовать вариант с `gh-pages`, описанный выше.
+Деплой выполняется через GitHub Actions из файла `.github/workflows/deploy.yml`.
+
+1. Сделайте commit и push в ветку `main`.
+2. На GitHub откройте **Actions** и дождитесь успешного workflow `Deploy to GitHub Pages`.
+3. Откройте **Settings -> Pages**.
+4. В блоке **Build and deployment** выберите **Source: GitHub Actions**.
+5. Откройте ссылку:
+
+```text
+https://uyanujet72-art.github.io/GudaJoB/
+```
+
+## Команды перед публикацией
+
+```bash
+npm install
+npm run build
+```
+
+Для локальной проверки production-сборки:
+
+```bash
+npm run preview
+```
