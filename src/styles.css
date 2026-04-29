@@ -421,16 +421,6 @@ h2 {
   background: rgba(17, 24, 39, 0.08);
 }
 
-.main-column .details-card {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-bottom: 0;
-  box-shadow: 0 14px 46px rgba(16, 24, 40, 0.07);
-}
-
-.main-column .details-item:last-child {
-  grid-column: 1 / -1;
-}
-
 .details-item {
   min-height: 126px;
   padding: 20px;
@@ -496,6 +486,19 @@ h2 {
   color: #475467;
   font-size: 1.045rem;
   line-height: 1.78;
+}
+
+.section-note {
+  display: inline-flex;
+  border: 1px solid rgba(7, 134, 111, 0.16);
+  border-radius: 999px;
+  margin: 18px 0 0;
+  padding: 9px 13px;
+  background: rgba(234, 250, 245, 0.72);
+  color: #064e3b !important;
+  font-size: 0.96rem !important;
+  font-weight: 880;
+  line-height: 1.35 !important;
 }
 
 .intro-card p:first-of-type {

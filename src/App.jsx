@@ -7,7 +7,7 @@ const duties = [
   'помогать с финансовой, медийной и коммуникационной аналитикой;',
   'придумывать идеи для проектов и доводить их до формы, в которую уже хочется верить;',
   'работать с текстами, презентациями, сайтами и гипотезами;',
-  'оформлять мысли так, чтобы их понял и преподаватель, и CEO;',
+  'оформлять мысли так, чтобы их понял и преподаватель, и гендиректор;',
   'искать решения там, где другие видят только дедлайн;',
   'иногда делать невозможное, но без нарушения Трудового кодекса.',
 ];
@@ -48,8 +48,8 @@ const offers = [
 const microTexts = [
   'GudaJoB — вакансии, которых ещё нет, но уже хочется откликнуться',
   'Дедлайн не страшен, если ты страшнее',
-  'Soft skills: включены',
-  'AI-assisted, human-approved',
+  'Гибкие навыки: включены',
+  'Сделано с ИИ, одобрено человеком',
   'Проект уже твой',
 ];
 
@@ -61,7 +61,7 @@ const vacancyDetails = [
   ['Отклики', 'принимаются от людей, которые не боятся начать'],
 ];
 
-const companyTags = ['AI', 'Media', 'Strategy', 'Analytics', 'Confidence'];
+const companyTags = ['ИИ', 'Медиа', 'Стратегия', 'Аналитика', 'Уверенность'];
 const contactEmail = 'alexander.gudoovich@gmail.com';
 
 function scrollToApply() {
@@ -99,11 +99,11 @@ function Hero() {
         <div className="badge-row">
           <span className="badge accent">Вакансия мечты</span>
           <span className="badge">HR уже улыбается</span>
-          <span className="badge">AI-assisted, human-approved</span>
+          <span className="badge">Сделано с ИИ, одобрено человеком</span>
         </div>
         <p className="eyebrow">GUDOVICH.AI ищет</p>
         <h1>Человек, который делает невозможное</h1>
-        <p className="hero-company">GUDOVICH.AI · личная карьера, но без скучных инструкций</p>
+        <p className="hero-company">GUDOVICH.AI · Карьера, но лично</p>
         <p className="hero-lead">Для тех, кто открывает хаос, смотрит на дедлайн и спокойно говорит: «Не скулить. Разберёмся».</p>
         <div className="hero-note">Любить себя — тоже профессиональный навык.</div>
         <p className="hero-subline">Не просто вакансия. Это приглашение стать версией себя, которая уже не отступает.</p>
@@ -143,10 +143,11 @@ function VacancyDetails() {
   );
 }
 
-function ListCard({ title, items, variant = 'default', id }) {
+function ListCard({ title, items, variant = 'default', id, note }) {
   return (
     <section className={`card ${variant}`} id={id}>
       <h2>{title}</h2>
+      {note && <p className="section-note">{note}</p>}
       <ul className="check-list">
         {items.map((item) => (
           <li key={item}>{item}</li>
@@ -193,7 +194,7 @@ function CompanyBlock() {
   return (
     <section className="card company-card" id="company">
       <div className="section-heading">
-        <span className="badge accent">О GUDOVICH.AI</span>
+        <span className="badge accent">О компании</span>
         <h2>О компании GUDOVICH.AI</h2>
       </div>
       <p>
@@ -233,7 +234,7 @@ function CandidateQuestion() {
         Если бы эта вакансия была не про опыт, а про смелость начать, что бы ты написал
         в первом абзаце своего отклика?
       </p>
-      <p className="question-caption">Ответь так, будто проект уже твой.</p>
+      <p className="question-caption">Неправильного ответа нет. Ответь так, будто проект уже твой.</p>
     </section>
   );
 }
@@ -295,6 +296,7 @@ function App() {
       <Header />
       <main>
         <Hero />
+        <VacancyDetails />
         <div className="layout">
           <div className="main-column">
             <section className="card intro-card">
@@ -316,11 +318,10 @@ function App() {
             </section>
 
             <CandidateParameters />
-            <VacancyDetails />
             <div className="micro-strip" aria-label="Креативные детали">
               {microTexts.map((text) => <span key={text}>{text}</span>)}
             </div>
-            <ListCard title="Что предстоит делать" items={duties} />
+            <ListCard title="Что предстоит делать" items={duties} note="Коротко: превращать хаос в результат." />
             <ListCard title="Кого мы ищем" items={requirements} id="requirements" />
 
             <ListCard title="Что мы предлагаем" items={offers} variant="offer-card" />
