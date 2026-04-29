@@ -26,12 +26,13 @@ const requirements = [
 ];
 
 const dreamCandidate = [
-  'кудрявый;',
-  'зеленоглазый;',
-  'рост 190 см;',
-  'красивый;',
-  'выглядит уверенно даже перед самим собой;',
-  'умеет зайти в аудиторию так, будто проект уже его.',
+  { text: 'кудрявый;' },
+  { text: 'зеленоглазый;' },
+  { text: 'рост 190 см;' },
+  { text: 'знак зодиака: Лев;' },
+  { text: 'красивый;' },
+  { text: 'выглядит уверенно даже перед самим собой;' },
+  { text: 'умеет зайти в аудиторию так, будто проект уже его.', wide: true },
 ];
 
 const offers = [
@@ -41,24 +42,45 @@ const offers = [
   'гибкий формат: гибрид, удалённо или красиво появиться в нужный момент;',
   'уважение к идеям, даже если их автор родился Девой;',
   'среда, где ценят ум, стиль и способность не паниковать;',
-  'проекты на стыке AI, медиа, бизнеса и коммуникаций;',
+  'проекты на стыке ИИ, медиа, бизнеса и коммуникаций;',
   'официальное моральное право говорить: «я делаю невозможное».',
 ];
 
 const microTexts = [
-  'GudaJoB — вакансии, которых ещё нет, но уже хочется откликнуться',
   'Дедлайн не страшен, если ты страшнее',
-  'Гибкие навыки: включены',
   'Сделано с ИИ, одобрено человеком',
   'Проект уже твой',
+];
+
+const scoringCriteria = [
+  ['Потенциал', 'высокий'],
+  ['Готовность начать', 'подтверждена'],
+  ['Уровень паники', 'под контролем'],
+  ['Проект', 'уже его'],
+];
+
+const comparisonRows = [
+  ['требует опыт', 'видит потенциал'],
+  ['пугает обязанностями', 'даёт роль'],
+  ['ищет резюме', 'ищет характер'],
+  ['обещает развитие', 'провоцирует начать'],
+  ['просит стрессоустойчивость', 'просит не скулить'],
+];
+
+const roleProfile = [
+  { term: 'Тип роли', description: 'стратег / аналитик / человек-оркестр' },
+  { term: 'Главная задача', description: 'превращать хаос в результат' },
+  { term: 'Уровень самостоятельности', description: 'высокий' },
+  { term: 'Уровень паники', description: 'недопустим' },
+  { term: 'Потенциал роста', description: 'подозрительно высокий', wide: true },
 ];
 
 const vacancyDetails = [
   ['Опыт', 'можно без опыта, если быстро думаешь'],
   ['Занятость', 'полная, особенно когда дедлайн рядом'],
-  ['Формат', 'удалённо / гибрид / появляться красиво'],
-  ['Локация', 'Москва, онлайн и там, где рождаются идеи'],
-  ['Отклики', 'принимаются от людей, которые не боятся начать'],
+  ['Формат', 'удалённо / гибрид'],
+  ['Локация', 'Москва / онлайн'],
+  ['Отклики', 'принимаются'],
 ];
 
 const companyTags = ['ИИ', 'Медиа', 'Стратегия', 'Аналитика', 'Уверенность'];
@@ -68,6 +90,10 @@ function scrollToApply() {
   document.querySelector('#apply')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+function scrollToCandidate() {
+  document.querySelector('#candidate')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 function Header() {
   return (
     <header className="site-header">
@@ -75,12 +101,12 @@ function Header() {
         <span className="brand-mark">GJ</span>
         <span>
           <strong>GudaJoB</strong>
-          <small>место, где невозможное становится вакансией</small>
+          <small>креативная вакансия, которая почти реальна</small>
         </span>
       </a>
       <nav className="nav-links" aria-label="Навигация">
         <a href="#vacancy">Вакансия</a>
-        <a href="#candidate-parameters">Кандидат</a>
+        <a href="#candidate">Кандидат</a>
         <a href="#company">Компания</a>
         <a href="#requirements">Требования</a>
         <a href="#question">Вопрос</a>
@@ -91,16 +117,14 @@ function Header() {
 }
 
 function Hero() {
-  const [saved, setSaved] = useState(false);
-
   return (
     <section className="hero" id="vacancy">
       <div className="hero-content">
         <div className="badge-row">
           <span className="badge accent">Вакансия мечты</span>
-          <span className="badge">HR уже улыбается</span>
-          <span className="badge">Сделано с ИИ, одобрено человеком</span>
+          <span className="badge">Кандидат почти найден</span>
         </div>
+        <p className="site-kicker">GudaJoB</p>
         <p className="eyebrow">GUDOVICH.AI ищет</p>
         <h1>Человек, который делает невозможное</h1>
         <p className="hero-company">GUDOVICH.AI · Карьера, но лично</p>
@@ -111,20 +135,22 @@ function Hero() {
           <span>от 300 000 ₽ на руки</span>
           <span>удалённо / гибрид / иногда появляться красиво</span>
           <span>можно без опыта, если быстро думаешь</span>
+          <span>Москва / онлайн</span>
         </div>
         <div className="hero-actions">
           <button className="button primary" onClick={scrollToApply}>Откликнуться</button>
-          <button className="button ghost" type="button" onClick={() => setSaved(true)}>
-            {saved ? 'Вакансия сохранена' : 'Сохранить вакансию'}
-          </button>
+          <button className="button ghost" type="button" onClick={scrollToCandidate}>Посмотреть кандидата</button>
         </div>
       </div>
       <div className="hero-panel" aria-label="Кратко о вакансии">
-        <div className="orbit-card">
-          <span className="panel-label">Статус миссии</span>
-          <strong>невозможно, но оплачивается</strong>
-          <p>Вакансия проверена внутренним чувством прекрасного</p>
-        </div>
+        <h2>Кратко о вакансии</h2>
+        <dl className="hero-summary">
+          <div><dt>Зарплата</dt><dd>от 300 000 ₽</dd></div>
+          <div><dt>Формат</dt><dd>удалённо / гибрид</dd></div>
+          <div><dt>Опыт</dt><dd>можно без опыта</dd></div>
+          <div><dt>Статус</dt><dd>кандидат почти найден</dd></div>
+          <div><dt>Отклик</dt><dd>открыт</dd></div>
+        </dl>
       </div>
     </section>
   );
@@ -163,9 +189,10 @@ function VacancySidebar() {
       <div>
         <p className="side-company">GUDOVICH.AI</p>
         <strong className="side-salary">от 300 000 ₽</strong>
+        <span className="side-note">на руки</span>
       </div>
       <dl>
-        <div><dt>Локация</dt><dd>Москва / удалённо / где красиво</dd></div>
+        <div><dt>Локация</dt><dd>Москва / удалённо</dd></div>
         <div><dt>Занятость</dt><dd>Полная занятость</dd></div>
         <div><dt>Опыт</dt><dd>Можно без опыта, если быстро думаешь</dd></div>
         <div><dt>Опубликовано</dt><dd>сегодня</dd></div>
@@ -177,15 +204,94 @@ function VacancySidebar() {
 
 function CandidateParameters() {
   return (
-    <section className="card candidate-card" id="candidate-parameters">
+    <section className="card candidate-card" id="candidate">
       <div className="section-heading">
         <span className="badge chosen">Кандидат уже выбран</span>
         <h2>Параметры кандидата, которого мы уже выбрали</h2>
       </div>
       <ul className="dream-list">
-        {dreamCandidate.map((item) => <li key={item}>{item}</li>)}
+        {dreamCandidate.map(({ text, wide }) => (
+          <li
+            key={text}
+            className={wide ? 'candidate-item--wide' : undefined}
+          >
+            {text}
+          </li>
+        ))}
       </ul>
       <p className="candidate-note">Эта часть вакансии не обсуждается. Иногда компания просто знает, кого ищет.</p>
+    </section>
+  );
+}
+
+function HrScoring() {
+  return (
+    <section className="card scoring-card" aria-labelledby="scoring-title">
+      <div className="section-heading compact">
+        <span className="badge chosen">Кандидат уже выбран</span>
+        <h2 id="scoring-title">HR-скоринг совпадения</h2>
+      </div>
+      <div className="score-main">
+        <span>Совпадение с вакансией:</span>
+        <strong>99,7%</strong>
+      </div>
+      <div className="score-bar" aria-label="Совпадение с вакансией 99,7%">
+        <span />
+      </div>
+      <p className="score-note">Оставшиеся 0,3% мы оставили на красивое волнение перед откликом.</p>
+      <dl className="score-grid">
+        {scoringCriteria.map(([term, description]) => (
+          <div key={term}>
+            <dt>{term}</dt>
+            <dd>{description}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  );
+}
+
+function VacancyComparison() {
+  return (
+    <section className="card comparison-card" aria-labelledby="comparison-title">
+      <h2 id="comparison-title">Обычная вакансия / эта вакансия</h2>
+      <div className="comparison-grid">
+        <div className="comparison-column muted-column">
+          <h3>Обычная вакансия</h3>
+          <ul>
+            {comparisonRows.map(([usual]) => <li key={usual}>{usual}</li>)}
+          </ul>
+        </div>
+        <div className="comparison-column accent-column">
+          <h3>Эта вакансия</h3>
+          <ul>
+            {comparisonRows.map(([, current]) => <li key={current}>{current}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RoleProfile() {
+  return (
+    <section className="card role-card" aria-labelledby="role-title">
+      <div className="section-heading compact">
+        <span className="badge accent">Профиль роли</span>
+        <h2 id="role-title">Профиль роли</h2>
+      </div>
+      <p>
+        Эта вакансия собрана не вокруг должности, а вокруг человека, который умеет быстро
+        включаться, разбираться в хаосе и превращать идею в результат.
+      </p>
+      <dl className="role-grid">
+        {roleProfile.map(({ term, description, wide }) => (
+          <div key={term} className={wide ? 'role-item--wide' : undefined}>
+            <dt>{term}</dt>
+            <dd>{description}</dd>
+          </div>
+        ))}
+      </dl>
     </section>
   );
 }
@@ -263,7 +369,7 @@ function ApplyForm() {
           Email
           <input type="email" name="email" placeholder="you@example.com" required />
         </label>
-        <label>
+        <label className="apply-field--full">
           Telegram
           <input type="text" name="telegram" placeholder="@username" />
         </label>
@@ -318,13 +424,16 @@ function App() {
             </section>
 
             <CandidateParameters />
-            <div className="micro-strip" aria-label="Креативные детали">
-              {microTexts.map((text) => <span key={text}>{text}</span>)}
-            </div>
+            <HrScoring />
+            <VacancyComparison />
+            <RoleProfile />
             <ListCard title="Что предстоит делать" items={duties} note="Коротко: превращать хаос в результат." />
             <ListCard title="Кого мы ищем" items={requirements} id="requirements" />
 
             <ListCard title="Что мы предлагаем" items={offers} variant="offer-card" />
+            <div className="micro-strip" aria-label="Креативные детали">
+              {microTexts.map((text) => <span key={text}>{text}</span>)}
+            </div>
 
             <CompanyBlock />
 
