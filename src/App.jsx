@@ -1,27 +1,28 @@
 import { useState } from 'react';
 
 const duties = [
-  'разбираться в нестандартных задачах и спокойно раскладывать их по полкам;',
-  'анализировать информацию и превращать ее в понятные выводы;',
+  'разбираться в нестандартных задачах, даже если они пришли без инструкции и с пометкой «срочно»;',
+  'превращать хаос в понятную структуру, а структуру - в действие;',
+  'анализировать информацию и делать выводы, которые можно защитить без дрожи в голосе;',
   'помогать с финансовой, медийной и коммуникационной аналитикой;',
-  'придумывать идеи для проектов, презентаций и неожиданных стратегических ходов;',
-  'оформлять мысли так, чтобы их понял и преподаватель, и CEO;',
-  'быстро учиться новому и не драматизировать при виде незнакомых терминов;',
-  'искать решения там, где другие видят только дедлайн;',
+  'придумывать идеи для проектов и доводить их до формы, в которую уже хочется верить;',
   'работать с текстами, презентациями, сайтами и гипотезами;',
+  'оформлять мысли так, чтобы их понял и преподаватель, и CEO;',
+  'искать решения там, где другие видят только дедлайн;',
   'иногда делать невозможное, но без нарушения Трудового кодекса.',
 ];
 
 const requirements = [
-  'способность быстро обучаться и включаться в незнакомый контекст;',
-  'системное мышление и любовь к аккуратным выводам;',
-  'грамотная письменная речь без канцелярита и паники;',
-  'интерес к бизнесу, медиа, рекламе, PR и аналитике;',
-  'умение работать с информацией, отделяя сигнал от шума;',
-  'базовое понимание маркетинга, коммуникаций и digital-среды;',
-  'умение задавать вопросы, после которых задача становится понятнее;',
-  'самостоятельность, ответственность и чувство юмора;',
-  'готовность учиться в магистратуре по направлению рекламы и связей с общественностью или интерес к этой сфере.',
+  'быстро учится и не делает вид, что все знает заранее;',
+  'умеет превращать хаос в структуру;',
+  'интересуется бизнесом, медиа, PR, рекламой и аналитикой;',
+  'может написать текст, который не стыдно показать преподавателю;',
+  'способен мыслить как студент, предприниматель и стратег одновременно;',
+  'не боится задавать вопросы, когда задача слишком загадочно улыбается;',
+  'умеет доводить идею до результата;',
+  'понимает, что уверенность - это навык, а не подарок с рождения;',
+  'имеет чувство юмора и способность не паниковать;',
+  'готов работать над собой, даже если никто не просил, но уже пора.',
 ];
 
 const dreamCandidate = [
@@ -29,8 +30,8 @@ const dreamCandidate = [
   'зеленоглазый;',
   'рост 190 см;',
   'красивый;',
-  'умеет выглядеть уверенно даже перед дедлайном;',
-  'способен зайти в аудиторию и сделать вид, что все под контролем.',
+  'выглядит уверенно даже перед самим собой;',
+  'умеет зайти в аудиторию так, будто проект уже его.',
 ];
 
 const offers = [
@@ -45,11 +46,24 @@ const offers = [
 ];
 
 const microTexts = [
+  'GudaJoB - вакансии, которых еще нет, но уже хочется откликнуться',
   'Дедлайн не страшен, если ты страшнее',
   'Soft skills: включены',
   'Hard skills: прокачиваются',
   'AI-assisted, human-approved',
+  'Career, but make it personal',
+  'Проект уже твой',
 ];
+
+const vacancyDetails = [
+  ['Опыт', 'можно без опыта, если быстро думаешь'],
+  ['Занятость', 'полная, особенно когда дедлайн рядом'],
+  ['Формат', 'удаленно / гибрид / появляться красиво'],
+  ['Локация', 'Москва, онлайн и там, где рождаются идеи'],
+  ['Отклики', 'принимаются от людей, которые не боятся начать'],
+];
+
+const companyTags = ['AI', 'Media', 'Strategy', 'Analytics', 'Confidence'];
 
 function scrollToApply() {
   document.querySelector('#apply')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -69,6 +83,7 @@ function Header() {
         <a href="#vacancy">Вакансия</a>
         <a href="#company">Компания</a>
         <a href="#requirements">Требования</a>
+        <a href="#question">Вопрос</a>
         <a href="#apply">Откликнуться</a>
       </nav>
     </header>
@@ -76,27 +91,30 @@ function Header() {
 }
 
 function Hero() {
+  const [saved, setSaved] = useState(false);
+
   return (
     <section className="hero" id="vacancy">
       <div className="hero-content">
         <div className="badge-row">
           <span className="badge accent">Вакансия мечты</span>
           <span className="badge">HR уже улыбается</span>
+          <span className="badge">AI-assisted, human-approved</span>
         </div>
         <p className="eyebrow">GUDOVICH.AI ищет</p>
         <h1>Человек, который делает невозможное</h1>
-        <p className="hero-lead">
-          Для тех, кто открывает задачу, смотрит на хаос и говорит:
-          «понял, сейчас разберемся».
-        </p>
+        <p className="hero-company">GUDOVICH.AI · Career, but make it personal</p>
+        <p className="hero-lead">Для тех, кто открывает хаос, смотрит на дедлайн и спокойно говорит: “Не скулить. Разберёмся”.</p>
         <div className="hero-meta" aria-label="Основные условия">
           <span>от 300 000 ₽ на руки</span>
-          <span>гибрид / удаленно / иногда появляться красиво</span>
-          <span>главное - быстро включаться</span>
+          <span>удаленно / гибрид / иногда появляться красиво</span>
+          <span>можно без опыта, если быстро думаешь</span>
         </div>
         <div className="hero-actions">
           <button className="button primary" onClick={scrollToApply}>Откликнуться</button>
-          <button className="button ghost" type="button">Сохранить вакансию</button>
+          <button className="button ghost" type="button" onClick={() => setSaved(true)}>
+            {saved ? 'Вакансия сохранена' : 'Сохранить вакансию'}
+          </button>
         </div>
       </div>
       <div className="hero-panel" aria-label="Кратко о вакансии">
@@ -110,9 +128,22 @@ function Hero() {
   );
 }
 
-function ListCard({ title, items, variant = 'default' }) {
+function VacancyDetails() {
   return (
-    <section className={`card ${variant}`}>
+    <section className="details-card" aria-label="Параметры вакансии">
+      {vacancyDetails.map(([term, description]) => (
+        <div key={term} className="details-item">
+          <dt>{term}</dt>
+          <dd>{description}</dd>
+        </div>
+      ))}
+    </section>
+  );
+}
+
+function ListCard({ title, items, variant = 'default', id }) {
+  return (
+    <section className={`card ${variant}`} id={id}>
       <h2>{title}</h2>
       <ul className="check-list">
         {items.map((item) => (
@@ -131,13 +162,78 @@ function VacancySidebar() {
         <strong className="side-salary">от 300 000 ₽</strong>
       </div>
       <dl>
-        <div><dt>Локация</dt><dd>Москва / удаленно / где красиво</dd></div>
+        <div><dt>Локация</dt><dd>Москва / удалённо / где красиво</dd></div>
         <div><dt>Занятость</dt><dd>Полная занятость</dd></div>
         <div><dt>Опыт</dt><dd>Можно без опыта, если быстро думаешь</dd></div>
         <div><dt>Опубликовано</dt><dd>сегодня</dd></div>
       </dl>
       <button className="button primary full" onClick={scrollToApply}>Откликнуться</button>
     </aside>
+  );
+}
+
+function DreamCandidate() {
+  return (
+    <section className="card dream-card" id="dream-candidate">
+      <div className="section-heading">
+        <span className="badge">очевидная ирония</span>
+        <h2>Идеальный кандидат по версии HR-мечты</h2>
+        <p>
+          Этот блок - эстетичная HR-фантазия внутри концепции сайта. Не требования, а улыбка
+          между серьезными пунктами.
+        </p>
+      </div>
+      <ul className="dream-list">
+        {dreamCandidate.map((item) => <li key={item}>{item}</li>)}
+      </ul>
+    </section>
+  );
+}
+
+function CompanyBlock() {
+  return (
+    <section className="card company-card" id="company">
+      <div className="section-heading">
+        <span className="badge accent">About GUDOVICH.AI</span>
+        <h2>О компании GUDOVICH.AI</h2>
+      </div>
+      <p>
+        GUDOVICH.AI - это компания, которая делает все: анализирует, придумывает,
+        презентует, автоматизирует, вдохновляет и иногда просто красиво выглядит в названии.
+      </p>
+      <p>
+        AI в названии появился не случайно. Мы посмотрели на рынок, поняли, что с AI все
+        звучит дороже, инвесторы улыбаются шире, а презентации становятся убедительнее.
+        Поэтому AI остался.
+      </p>
+      <blockquote>
+        Наша главная миссия - дать шанс человеку, который еще вчера сомневался, а сегодня уже
+        открывает вакансию на 300 000 ₽ и думает: “А почему бы и нет?”
+      </blockquote>
+      <p>
+        Мы любим сильные идеи, смелые отклики, людей, которые не сдаются, и особенно тех,
+        кто однажды понимает: любить себя - тоже профессиональный навык.
+      </p>
+      <div className="company-tags" aria-label="Направления компании">
+        {companyTags.map((tag) => <span key={tag}>{tag}</span>)}
+      </div>
+    </section>
+  );
+}
+
+function CandidateQuestion() {
+  return (
+    <section className="card question-card" id="question">
+      <span className="badge accent">Проект уже твой</span>
+      <h2>Вопрос кандидату</h2>
+      <p>
+        Представь, что эту вакансию написал твой будущий ты. Что ты ответишь прошлому себе,
+        чтобы доказать: ты уже стал человеком, который делает невозможное?
+      </p>
+      <p className="question-accent">
+        Что ты готов сделать сегодня, чтобы однажды зайти в аудиторию так, будто проект уже твой?
+      </p>
+    </section>
   );
 }
 
@@ -154,7 +250,7 @@ function ApplyForm() {
       <div className="section-heading">
         <span className="badge accent">Apply</span>
         <h2>Откликнуться</h2>
-        <p>Расскажите, почему именно вы способны красиво войти в задачу и вывести ее к смыслу.</p>
+        <p>Расскажите, почему именно вы способны войти в хаос и выйти оттуда с проектом.</p>
       </div>
       <form className="apply-form" onSubmit={handleSubmit}>
         <label>
@@ -169,13 +265,13 @@ function ApplyForm() {
           Telegram
           <input type="text" name="telegram" placeholder="@username" />
         </label>
-        <label>
-          Ссылка на портфолио или соцсеть
-          <input type="url" name="portfolio" placeholder="https://..." />
-        </label>
         <label className="wide">
           Почему именно ты?
-          <textarea name="why" rows="5" placeholder="Потому что дедлайн увидел меня и сам перенесся." required />
+          <textarea name="why" rows="4" placeholder="Потому что я уже учусь быть человеком, который не исчезает после слова «срочно»." required />
+        </label>
+        <label className="wide">
+          Что ты готов сделать, чтобы проект стал твоим?
+          <textarea name="project" rows="4" placeholder="Например: разобраться, написать, защитить, улучшить и не скулить." required />
         </label>
         <div className="form-actions">
           <button className="button primary" type="submit">Отправить отклик</button>
@@ -184,7 +280,8 @@ function ApplyForm() {
       </form>
       {sent && (
         <div className="success-message" role="status">
-          Ваш отклик принят. HR уже восхищён.
+          <strong>Ваш отклик принят. HR уже восхищён.</strong>
+          <span>Осталось только не скулить и забрать проект.</span>
         </div>
       )}
     </section>
@@ -197,6 +294,7 @@ function App() {
       <Header />
       <main>
         <Hero />
+        <VacancyDetails />
         <div className="micro-strip" aria-label="Креативные детали">
           {microTexts.map((text) => <span key={text}>{text}</span>)}
         </div>
@@ -205,58 +303,39 @@ function App() {
             <section className="card intro-card">
               <h2>Описание вакансии</h2>
               <p>
-                GUDOVICH.AI ищет не просто сотрудника. Мы ищем человека, который умеет быстро
-                разбираться в новых задачах, соединять аналитику, коммуникации, креатив,
-                бизнес-мышление и способность не теряться, когда никто не понимает, что происходит.
+                Мы ищем не просто сотрудника. Мы ищем человека, который открывает задачу,
+                смотрит на хаос и говорит: “Не скулить. Разберёмся”.
               </p>
               <p>
-                Здесь ценят ясную голову, хороший текст, нормальный вопрос вовремя и редкий навык
-                превращать «надо срочно» в план, презентацию, гипотезу или вежливое письмо.
+                Эта вакансия для того, кто умеет учиться быстрее, чем меняется дедлайн. Для того,
+                кто может превратить странную идею в структуру, структуру - в текст, текст - в
+                презентацию, а презентацию - в проект, который уже хочется защищать.
+              </p>
+              <p>
+                GUDOVICH.AI нужен человек, который пока, возможно, сам не до конца понял,
+                насколько он способен. Но уже подозрительно хорошо подходит на роль того,
+                кто делает невозможное.
               </p>
             </section>
 
             <ListCard title="Что предстоит делать" items={duties} />
-            <ListCard title="Кого мы ищем" items={requirements} />
-
-            <section className="card irony-card" id="requirements">
-              <div className="section-heading">
-                <span className="badge">очевидная ирония</span>
-                <h2>Идеальный кандидат по версии HR-мечты</h2>
-                <p>
-                  Этот блок - часть креативной концепции вакансии, а не реальные требования к кандидату.
-                </p>
-              </div>
-              <ul className="dream-list">
-                {dreamCandidate.map((item) => <li key={item}>{item}</li>)}
-              </ul>
-            </section>
+            <ListCard title="Кого мы ищем" items={requirements} id="requirements" />
+            <DreamCandidate />
 
             <ListCard title="Что мы предлагаем" items={offers} variant="offer-card" />
 
-            <section className="card company-card" id="company">
-              <span className="badge accent">Company</span>
-              <h2>О компании GUDOVICH.AI</h2>
-              <p>
-                GUDOVICH.AI - вымышленная креативная AI-лаборатория, где искусственный интеллект,
-                медиа, бизнес-аналитика и коммуникационные стратегии встречаются за одним столом
-                и пытаются выглядеть так, будто это было запланировано.
-              </p>
-              <p>
-                Мы занимаемся нестандартными проектами, переводим хаос в понятные решения,
-                собираем смысл из данных, идей и презентаций. Немного пафоса, немного самоиронии,
-                много уважения к людям, которые думают.
-              </p>
-            </section>
+            <CompanyBlock />
 
             <section className="card why-card">
               <h2>Почему эта вакансия существует</h2>
               <p>
-                Потому что иногда компании нужен не еще один специалист по должностной инструкции,
-                а человек, который умеет думать, учиться, писать, анализировать, презентовать и
-                не исчезать после слов «надо срочно».
+                Потому что иногда компании нужен не просто специалист по должностной инструкции,
+                а человек, который умеет думать, писать, анализировать, презентовать, учиться и
+                не исчезать после слов: “Надо срочно”.
               </p>
             </section>
 
+            <CandidateQuestion />
             <ApplyForm />
           </div>
           <VacancySidebar />
@@ -265,6 +344,7 @@ function App() {
       <button className="sticky-apply" onClick={scrollToApply}>Откликнуться</button>
       <footer className="footer">
         <p>GudaJoB - креативная платформа вакансий, которых пока не существует, но уже хочется откликнуться.</p>
+        <p>Любить себя - тоже профессиональный навык.</p>
         <p>GUDOVICH.AI © 2026 · <a href="mailto:hr@gudovich.ai">hr@gudovich.ai</a></p>
       </footer>
     </div>
