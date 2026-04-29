@@ -14,7 +14,7 @@
   --blue: #2557d6;
   --green: #07866f;
   --soft-blue: #eef4ff;
-  --shadow: 0 24px 80px rgba(16, 24, 40, 0.11);
+  --shadow: 0 20px 62px rgba(16, 24, 40, 0.09);
   --radius: 24px;
 }
 
@@ -30,8 +30,8 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    radial-gradient(circle at 10% -10%, rgba(37, 87, 214, 0.18), transparent 34rem),
-    radial-gradient(circle at 88% 8%, rgba(7, 134, 111, 0.14), transparent 28rem),
+    radial-gradient(circle at 10% -10%, rgba(37, 87, 214, 0.12), transparent 34rem),
+    radial-gradient(circle at 88% 8%, rgba(7, 134, 111, 0.08), transparent 28rem),
     linear-gradient(180deg, #fbfcff 0%, #f6f8fc 42%, #eef3f8 100%);
 }
 
@@ -213,10 +213,10 @@ main {
   color: #047857;
 }
 
-.badge.dark {
-  border-color: rgba(255, 255, 255, 0.18);
-  background: rgba(17, 24, 39, 0.92);
-  color: #ffffff;
+.badge.chosen {
+  border-color: rgba(37, 87, 214, 0.16);
+  background: rgba(238, 244, 255, 0.86);
+  color: #243b72;
 }
 
 .eyebrow {
@@ -348,7 +348,7 @@ h2 {
 
 .hero-panel {
   position: relative;
-  min-height: 430px;
+  min-height: 390px;
   overflow: hidden;
   background:
     radial-gradient(circle at 72% 18%, rgba(123, 211, 192, 0.28), transparent 16rem),
@@ -421,6 +421,16 @@ h2 {
   background: rgba(17, 24, 39, 0.08);
 }
 
+.main-column .details-card {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 0;
+  box-shadow: 0 14px 46px rgba(16, 24, 40, 0.07);
+}
+
+.main-column .details-item:last-child {
+  grid-column: 1 / -1;
+}
+
 .details-item {
   min-height: 126px;
   padding: 20px;
@@ -458,6 +468,11 @@ h2 {
   background: rgba(255, 255, 255, 0.66);
   text-align: center;
   line-height: 1.35;
+}
+
+.main-column .micro-strip {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 0;
 }
 
 .layout {
@@ -546,10 +561,10 @@ h2 {
 .candidate-card {
   position: relative;
   overflow: hidden;
-  border-color: rgba(17, 24, 39, 0.14);
+  border-color: rgba(37, 87, 214, 0.12);
   background:
-    radial-gradient(circle at 90% 10%, rgba(37, 87, 214, 0.12), transparent 16rem),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(238, 244, 255, 0.82));
+    radial-gradient(circle at 92% 6%, rgba(37, 87, 214, 0.08), transparent 14rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(247, 250, 255, 0.84));
 }
 
 .candidate-card::after {
@@ -558,7 +573,7 @@ h2 {
   top: -80px;
   width: 230px;
   height: 230px;
-  border: 32px solid rgba(17, 24, 39, 0.06);
+  border: 26px solid rgba(37, 87, 214, 0.055);
   border-radius: 50%;
   content: "";
 }
@@ -575,16 +590,16 @@ h2 {
 }
 
 .candidate-card .dream-list li {
-  background: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.84);
 }
 
 .candidate-note {
-  border: 1px solid rgba(17, 24, 39, 0.08);
+  border: 1px solid rgba(37, 87, 214, 0.12);
   border-radius: 20px;
   margin: 22px 0 0;
   padding: 16px 18px;
-  background: rgba(17, 24, 39, 0.92);
-  color: #ffffff !important;
+  background: rgba(238, 244, 255, 0.72);
+  color: #243044 !important;
   font-weight: 850;
 }
 
@@ -653,10 +668,20 @@ h2 {
 .question-accent {
   border: 1px solid rgba(37, 87, 214, 0.12);
   border-radius: 22px;
-  padding: 18px 20px;
+  margin-bottom: 10px;
+  padding: 20px 22px;
   background: rgba(255, 255, 255, 0.82);
   color: #111827 !important;
+  font-size: clamp(1.08rem, 1.7vw, 1.28rem) !important;
   font-weight: 880;
+  line-height: 1.58 !important;
+}
+
+.question-caption {
+  margin: 0;
+  color: #667085 !important;
+  font-size: 0.98rem !important;
+  font-weight: 820;
 }
 
 .side-card {

@@ -49,9 +49,7 @@ const microTexts = [
   'GudaJoB — вакансии, которых ещё нет, но уже хочется откликнуться',
   'Дедлайн не страшен, если ты страшнее',
   'Soft skills: включены',
-  'Hard skills: прокачиваются',
   'AI-assisted, human-approved',
-  'Career, but make it personal',
   'Проект уже твой',
 ];
 
@@ -82,6 +80,7 @@ function Header() {
       </a>
       <nav className="nav-links" aria-label="Навигация">
         <a href="#vacancy">Вакансия</a>
+        <a href="#candidate-parameters">Кандидат</a>
         <a href="#company">Компания</a>
         <a href="#requirements">Требования</a>
         <a href="#question">Вопрос</a>
@@ -104,7 +103,7 @@ function Hero() {
         </div>
         <p className="eyebrow">GUDOVICH.AI ищет</p>
         <h1>Человек, который делает невозможное</h1>
-        <p className="hero-company">GUDOVICH.AI · Career, but make it personal</p>
+        <p className="hero-company">GUDOVICH.AI · личная карьера, но без скучных инструкций</p>
         <p className="hero-lead">Для тех, кто открывает хаос, смотрит на дедлайн и спокойно говорит: «Не скулить. Разберёмся».</p>
         <div className="hero-note">Любить себя — тоже профессиональный навык.</div>
         <p className="hero-subline">Не просто вакансия. Это приглашение стать версией себя, которая уже не отступает.</p>
@@ -122,8 +121,8 @@ function Hero() {
       </div>
       <div className="hero-panel" aria-label="Кратко о вакансии">
         <div className="orbit-card">
-          <span className="panel-label">Mission status</span>
-          <strong>impossible, but paid</strong>
+          <span className="panel-label">Статус миссии</span>
+          <strong>невозможно, но оплачивается</strong>
           <p>Вакансия проверена внутренним чувством прекрасного</p>
         </div>
       </div>
@@ -179,7 +178,7 @@ function CandidateParameters() {
   return (
     <section className="card candidate-card" id="candidate-parameters">
       <div className="section-heading">
-        <span className="badge dark">already chosen</span>
+        <span className="badge chosen">Кандидат уже выбран</span>
         <h2>Параметры кандидата, которого мы уже выбрали</h2>
       </div>
       <ul className="dream-list">
@@ -194,7 +193,7 @@ function CompanyBlock() {
   return (
     <section className="card company-card" id="company">
       <div className="section-heading">
-        <span className="badge accent">About GUDOVICH.AI</span>
+        <span className="badge accent">О GUDOVICH.AI</span>
         <h2>О компании GUDOVICH.AI</h2>
       </div>
       <p>
@@ -227,12 +226,14 @@ function CandidateQuestion() {
       <span className="badge accent">Проект уже твой</span>
       <h2>Вопрос кандидату</h2>
       <p>
-        Представь, что эту вакансию написал твой будущий ты. Что ты ответишь прошлому себе,
-        чтобы доказать: ты уже стал человеком, который делает невозможное?
+        Это не проверка и не собеседование. Здесь нет неправильного ответа — только попытка
+        честно поговорить с собой.
       </p>
       <p className="question-accent">
-        Что ты готов сделать сегодня, чтобы однажды зайти в аудиторию так, будто проект уже твой?
+        Если бы эта вакансия была не про опыт, а про смелость начать, что бы ты написал
+        в первом абзаце своего отклика?
       </p>
+      <p className="question-caption">Ответь так, будто проект уже твой.</p>
     </section>
   );
 }
@@ -248,7 +249,7 @@ function ApplyForm() {
   return (
     <section className="card apply-card" id="apply">
       <div className="section-heading">
-        <span className="badge accent">Apply</span>
+        <span className="badge accent">Отклик</span>
         <h2>Откликнуться</h2>
         <p>Расскажите, почему именно вы способны войти в хаос и выйти оттуда с проектом.</p>
       </div>
@@ -294,10 +295,6 @@ function App() {
       <Header />
       <main>
         <Hero />
-        <VacancyDetails />
-        <div className="micro-strip" aria-label="Креативные детали">
-          {microTexts.map((text) => <span key={text}>{text}</span>)}
-        </div>
         <div className="layout">
           <div className="main-column">
             <section className="card intro-card">
@@ -318,9 +315,13 @@ function App() {
               </p>
             </section>
 
+            <CandidateParameters />
+            <VacancyDetails />
+            <div className="micro-strip" aria-label="Креативные детали">
+              {microTexts.map((text) => <span key={text}>{text}</span>)}
+            </div>
             <ListCard title="Что предстоит делать" items={duties} />
             <ListCard title="Кого мы ищем" items={requirements} id="requirements" />
-            <CandidateParameters />
 
             <ListCard title="Что мы предлагаем" items={offers} variant="offer-card" />
 
