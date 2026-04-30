@@ -698,6 +698,60 @@ p {
   margin-bottom: 0;
 }
 
+.needs-section {
+  background: var(--white);
+}
+
+.needs-section .section-heading p {
+  max-width: 720px;
+  margin: 0;
+}
+
+.needs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.needs-card {
+  border: 1px solid var(--border-soft);
+  border-radius: 20px;
+  padding: 20px;
+  background: var(--surface-soft);
+}
+
+.needs-card--wide {
+  grid-column: 1 / -1;
+  padding: 24px;
+  background:
+    linear-gradient(135deg, rgba(238, 244, 255, 0.58), rgba(255, 255, 255, 0.96)),
+    var(--white);
+}
+
+.needs-card h3 {
+  margin: 0 0 14px;
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 850;
+  letter-spacing: -0.015em;
+}
+
+.needs-card p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 15.5px;
+  line-height: 1.65;
+}
+
+.needs-card p + p {
+  margin-top: 12px;
+}
+
+.needs-card--wide p {
+  max-width: 880px;
+}
+
 .match-card {
   border-color: rgba(37, 87, 214, 0.12);
   background: var(--white);
@@ -1054,6 +1108,7 @@ p {
   .dream-list,
   .score-grid,
   .comparison-grid,
+  .needs-grid,
   .role-grid {
     grid-template-columns: 1fr;
   }
