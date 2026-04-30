@@ -373,7 +373,7 @@ function ApplyForm() {
       <div className="section-heading">
         <span className="badge accent">Отклик</span>
         <h2>Откликнуться</h2>
-        <p>Расскажите, почему именно вы способны войти в хаос и выйти оттуда с проектом.</p>
+        <p>Оставьте ответ на главный вопрос — и контакты, чтобы GUDOVICH.AI знала, куда отправлять восхищение.</p>
       </div>
       <form className="apply-form" onSubmit={handleSubmit}>
         <label>
@@ -389,12 +389,12 @@ function ApplyForm() {
           <input type="text" name="telegram" placeholder="@username" />
         </label>
         <label className="wide">
-          Почему именно ты?
-          <textarea name="why" rows="4" placeholder="Потому что я уже учусь быть человеком, который не исчезает после слова «срочно»." required />
+          Во что большинство верит, а ты — нет?
+          <textarea name="why" rows="4" placeholder="Например: большинство верит, что нужно дождаться идеальной готовности. Я — нет." required />
         </label>
         <label className="wide">
-          Что ты готов сделать, чтобы проект стал твоим?
-          <textarea name="project" rows="4" placeholder="Например: разобраться, написать, защитить, улучшить и не скулить." required />
+          Какая твоя идея пока кажется странной, но однажды может стать проектом?
+          <textarea name="project" rows="4" placeholder="Опишите идею коротко: что это, зачем она нужна и почему вы в неё верите." required />
         </label>
         <div className="form-actions">
           <button className="button primary" type="submit">Отправить отклик</button>
