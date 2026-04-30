@@ -698,6 +698,16 @@ p {
   margin-bottom: 0;
 }
 
+.match-card {
+  border-color: rgba(37, 87, 214, 0.12);
+  background: var(--white);
+}
+
+.match-card p {
+  max-width: 820px;
+  margin-bottom: 0;
+}
+
 .micro-strip {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
